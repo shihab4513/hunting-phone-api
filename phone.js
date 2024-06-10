@@ -53,15 +53,28 @@ const displayPhones = phones => {
         `;
         // step 4 : append Child
         phoneContainer.appendChild(phoneCard);
-    })
+    });
+    // hide loading spinner
+    toggleLoadingSpinner(false);
 }
 // handle search button
 const handleSearch = () => {
+    toggleLoadingSpinner(true);
     // access search field with id
     const searchField = document.getElementById('search-field');
     // access the info from search field
     const searchText = searchField.value;
     loadPhone(searchText);
 
+}
+
+const toggleLoadingSpinner = (isLoading) => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        loadingSpinner.classList.remove('hidden');
+    }
+    else {
+        loadingSpinner.classList.add('hidden');
+    }
 }
 // loadPhone();
