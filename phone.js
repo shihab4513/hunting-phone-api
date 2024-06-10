@@ -32,7 +32,7 @@ const displayPhones = (phones, isShowAll) => {
     }
 
 
-
+    let count = false;
 
     phones.forEach(phone => {
         // console.log(phone);
@@ -47,7 +47,7 @@ const displayPhones = (phones, isShowAll) => {
                             alt="Shoes" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">${phone.phone_name}</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                        <p>There are many variations of passages of available, but the majority have suffered</p>
                         <div class="card-actions justify-center">
                             <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
                         </div>
@@ -56,7 +56,17 @@ const displayPhones = (phones, isShowAll) => {
         `;
         // step 4 : append Child
         phoneContainer.appendChild(phoneCard);
+        count = true;
     });
+    const noInfo = document.getElementById('no-info-found');
+    if (!count) {
+
+        noInfo.classList.remove('hidden');
+
+    }
+    else {
+        noInfo.classList.add('hidden');
+    }
     // hide loading spinner
     toggleLoadingSpinner(false);
 }
@@ -114,7 +124,7 @@ const showPhoneDetails = (phone) => {
                 <p class="text-[1.25rem] font-normal text-[#706F6F]"><span class="font-semibold text-[#403F3F]">Release data : </span>${phone?.releaseDate}  </p>
                  <p class="text-[1.25rem] font-normal text-[#706F6F]"><span class="font-semibold text-[#403F3F]">Brand : </span>${phone?.brand}  </p>
                 
-                   <p class="text-[1.25rem] font-normal text-[#706F6F]"><span class="font-semibold text-[#403F3F]">GPS : </span>${phone?.others?.GPS}  </p>
+                   <p class="text-[1.25rem] font-normal text-[#706F6F]"><span class="font-semibold text-[#403F3F]">GPS : </span>${phone?.others?.GPS || 'No GPS available'}  </p>
     `;
 
 
